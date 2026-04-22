@@ -1,6 +1,56 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+// 玻璃容器组件
+class GlassContainer extends StatelessWidget {
+  final double? width;
+  final double? height;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
+  final Widget child;
+
+  const GlassContainer({
+    super.key,
+    this.width,
+    this.height,
+    this.margin,
+    this.padding,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      margin: margin,
+      padding: padding,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        color: Colors.white.withOpacity(0.25),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.4),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF1F2687).withOpacity(0.1),
+            blurRadius: 32,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: child,
+        ),
+      ),
+    );
+  }
+}
+
 // ==================== AI聊天模块 ====================
 class AIChatModule extends StatefulWidget {
   const AIChatModule({super.key});
