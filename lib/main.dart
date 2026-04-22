@@ -70,36 +70,31 @@ class GlassBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
-        color: Colors.white.withOpacity(0.25),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.4),
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF1F2687).withOpacity(0.1),
-            blurRadius: 32,
-            offset: const Offset(0, 8),
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.15),
+            border: Border(
+              top: BorderSide(
+                color: Colors.white.withOpacity(0.3),
+                width: 0.5,
+              ),
+            ),
           ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(28),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.chat_bubble_rounded, '聊天', 0),
-              _buildNavItem(Icons.auto_awesome_rounded, 'AI', 1),
-              _buildNavItem(Icons.person_rounded, '我的', 2),
-              _buildNavItem(Icons.settings_rounded, '设置', 3),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: SafeArea(
+            top: false,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildNavItem(Icons.chat_bubble_rounded, '聊天', 0),
+                _buildNavItem(Icons.auto_awesome_rounded, 'AI', 1),
+                _buildNavItem(Icons.person_rounded, '我的', 2),
+                _buildNavItem(Icons.settings_rounded, '设置', 3),
+              ],
+            ),
           ),
         ),
       ),
@@ -113,20 +108,23 @@ class GlassBottomNav extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(
           gradient: isSelected
               ? const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                   colors: [Color(0xFF7C4DFF), Color(0xFF69F0AE)],
                 )
               : null,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: const Color(0xFF7C4DFF).withOpacity(0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 6),
+                    color: const Color(0xFF7C4DFF).withOpacity(0.25),
+                    blurRadius: 16,
+                    offset: const Offset(0, 8),
+                    spreadRadius: -2,
                   ),
                 ]
               : null,
@@ -136,16 +134,16 @@ class GlassBottomNav extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.white : const Color(0xFF636E72),
+              color: isSelected ? Colors.white : const Color(0xFF636E72).withOpacity(0.7),
               size: 24,
             ),
             const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? Colors.white : const Color(0xFF636E72),
+                color: isSelected ? Colors.white : const Color(0xFF636E72).withOpacity(0.7),
                 fontSize: 11,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
               ),
             ),
           ],
