@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'screens/chat_module.dart';
+import 'screens/ai_chat_module.dart';
+import 'screens/profile_module.dart';
+import 'screens/settings_module.dart';
 
 class GlassApp extends StatelessWidget {
   const GlassApp({super.key});
