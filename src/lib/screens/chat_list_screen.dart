@@ -27,23 +27,23 @@ class ChatListScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 360,
-                  child: _buildChatList(),
+                  child: _buildChatList(context),
                 ),
                 const VerticalDivider(width: 1),
                 Expanded(
-                  child: _buildEmptyChat(),
+                  child: _buildEmptyChat(context),
                 ),
               ],
             );
           }
           // 竖屏单栏
-          return _buildChatList();
+          return _buildChatList(context);
         },
       ),
     );
   }
 
-  Widget _buildChatList() {
+  Widget _buildChatList(BuildContext context) {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
@@ -82,7 +82,7 @@ class ChatListScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildEmptyChat() {
+  Widget _buildEmptyChat(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
