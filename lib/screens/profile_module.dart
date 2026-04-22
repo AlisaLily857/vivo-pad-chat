@@ -8,6 +8,7 @@ class GlassContainer extends StatelessWidget {
   final EdgeInsets? margin;
   final EdgeInsets? padding;
   final Widget child;
+  final double borderRadius;
 
   const GlassContainer({
     super.key,
@@ -16,6 +17,7 @@ class GlassContainer extends StatelessWidget {
     this.margin,
     this.padding,
     required this.child,
+    this.borderRadius = 20,
   });
 
   @override
@@ -26,24 +28,24 @@ class GlassContainer extends StatelessWidget {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        color: Colors.white.withOpacity(0.25),
+        borderRadius: BorderRadius.circular(borderRadius),
+        color: Colors.white.withOpacity(0.20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.4),
-          width: 1,
+          color: Colors.white.withOpacity(0.35),
+          width: 0.8,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF1F2687).withOpacity(0.1),
-            blurRadius: 32,
-            offset: const Offset(0, 8),
+            color: const Color(0xFF1F2687).withOpacity(0.08),
+            blurRadius: 24,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(borderRadius),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
           child: child,
         ),
       ),
