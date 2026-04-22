@@ -5,6 +5,10 @@ import 'screens/ai_chat_module.dart';
 import 'screens/profile_module.dart';
 import 'screens/settings_module.dart';
 
+void main() {
+  runApp(const GlassApp());
+}
+
 class GlassApp extends StatelessWidget {
   const GlassApp({super.key});
 
